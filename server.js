@@ -9,7 +9,7 @@ http.createServer((request,response) => {
   catch { response.writeHead(400); response.end('Bad request'); return; }
   const relative = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
   const file = path.resolve(root,relative);
-  const allowed = ['index.html','styles.css','app.js','content.js'];
+  const allowed = ['index.html','officers.html','styles.css','app.js','content.js'];
   if ((!allowed.includes(relative) && !relative.startsWith('assets/')) || !file.startsWith(root + path.sep)) {
     response.writeHead(404); response.end('Not found'); return;
   }
@@ -19,4 +19,3 @@ http.createServer((request,response) => {
     response.end(data);
   });
 }).listen(3000,'127.0.0.1',() => console.log('ACC preview: http://127.0.0.1:3000'));
-
